@@ -22,12 +22,11 @@ public class TestMain
     public static void main(String[] args)
     {
         startTimer(10000);
-        concurrence();
-        
-        new ThreadNotifyOrAll();
+        concurrence1();
+        concurrence2();
     }
     
-    private static void concurrence()
+    private static void concurrence1()
     {
         //        new Thread4Lock().start();
         //        new Thread4Lock().start();
@@ -38,6 +37,11 @@ public class TestMain
         //        new Thread4SynchronizedInnerObject().start();
         
         //        new Thread4InterruptOrInterrupted().start();
+    }
+    
+    private static void concurrence2()
+    {
+        new ThreadNotifyOrAll();
     }
     
     /**
@@ -71,8 +75,8 @@ public class TestMain
                     {
                         e.printStackTrace();
                     }
-                    Log.log(TAG, "-----------Timer for system exit remain:"
-                            + (i -= 1000) / 1000 + " seconds");
+                    Log.log(TAG, "*************= Timer for system exit remain:"
+                            + (i -= 1000) / 1000 + " seconds =*************");
                 }
             };
         };
