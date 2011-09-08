@@ -4,12 +4,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.habzy.log.Log;
+
 /**
  * 
- * One sentence description
- * Detailed description
- *  notify():     wait1,2,3,4,5;wake1,2,3,4,5;The first wait, The first wake.
- *  notifyAll():  wait1,2,3,4,5;wake5,4,3,2,1;The first wait, The last wake.
+ * One sentence description Detailed description notify():
+ * wait1,2,3,4,5;wake1,2,3,4,5;The first wait, The first wake. notifyAll():
+ * wait1,2,3,4,5;wake5,4,3,2,1;The first wait, The last wake.
  * 
  * @author habzy
  * @version [version, 2011-9-8]
@@ -34,24 +34,32 @@ public class ThreadNotifyOrAll extends Thread
             notifyTest();
         }
         
+        if (6 == index)
+        {
+            newWaitAndSleepThread();
+        }
+        
         while (index <= 5)
         {
             try
             {
                 Thread.sleep(50);
                 new ThreadNotifyOrAll();
+                Thread.sleep(10);
             }
             catch (InterruptedException e)
             {
             }
         }
+        
+       
+        
     }
-    
+
     private void notifyTest()
     {
         new Timer().schedule(new TimerTask()
         {
-            
             @Override
             public void run()
             {
@@ -74,6 +82,36 @@ public class ThreadNotifyOrAll extends Thread
         
     }
     
+    private void newWaitAndSleepThread()
+    {
+        new Thread()
+        {
+            public void run()
+            {
+                synchronized (mBlock)
+                {
+                    try
+                    {
+                        while (true)
+                        {
+                            Log.log("ThreadWaitAndSleep", "==>Before wait");
+                            mBlock.wait();
+                            Log.log("ThreadWaitAndSleep",
+                                    "==>After  wait and go to sleep");
+                            sleep(500);
+                            Log.log("ThreadWaitAndSleep", "==>After sleep");
+                        }
+                    }
+                    catch (InterruptedException e)
+                    {
+                        Log.log(TAG, e.toString());
+                    }
+                }
+            };
+            
+        }.start();
+    }
+
     @Override
     public void run()
     {
