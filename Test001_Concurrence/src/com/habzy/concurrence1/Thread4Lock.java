@@ -11,6 +11,7 @@
 package com.habzy.concurrence1;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.habzy.log.Log;
@@ -33,6 +34,8 @@ public class Thread4Lock extends Thread
     
     private static ReentrantLock mLock = new ReentrantLock();
     
+    private static Condition mCondition = mLock.newCondition();
+    
     /* (non-Javadoc)
      * @see java.lang.Runnable#run()
      */
@@ -46,9 +49,11 @@ public class Thread4Lock extends Thread
             
             try
             {
-                Log.log(TAG, "number:" + number);
-                sleep(2000);
+                Log.log(TAG, "before Sleep");
+                sleep(2500);
                 Log.log(TAG, "after Sleep");
+                mCondition.await();
+                Log.log(TAG, "after await");
             }
             catch (Exception e)
             {
@@ -81,6 +86,19 @@ public class Thread4Lock extends Thread
                 Log.log(TAG, "mLock.tryLock():" + isGotLock);
                 sleep(2000);
                 Log.log(TAG, "after Sleep");
+                if (!isGotLock)
+                {
+                    isGotLock = mLock.tryLock(1000, TimeUnit.MILLISECONDS);
+                    Log.log(TAG, "mLock.tryLock() again:" + isGotLock);
+                }
+                if (isGotLock)
+                {
+//                    Log.log(TAG, "mCondition.signal()");
+//                    mCondition.signal();
+                    Log.log(TAG, "Sleep again");
+                    sleep(1000);
+                    Log.log(TAG, "After sleep again");
+                }
             }
             catch (Exception e)
             {
