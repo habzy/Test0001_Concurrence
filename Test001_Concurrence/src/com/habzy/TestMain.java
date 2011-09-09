@@ -3,7 +3,7 @@ package com.habzy;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.habzy.concurrence2.ThreadNotifyOrAll;
+import com.habzy.concurrence1.Thread4Lock;
 import com.habzy.log.Log;
 
 /**
@@ -28,8 +28,8 @@ public class TestMain
     
     private static void concurrence1()
     {
-        //        new Thread4Lock().start();
-        //        new Thread4Lock().start();
+                new Thread4Lock().start();
+                new Thread4Lock().start();
         
         //        new ThreadVolatile(false).start();
         //        new ThreadVolatile(true).start();
@@ -41,7 +41,7 @@ public class TestMain
     
     private static void concurrence2()
     {
-        new ThreadNotifyOrAll();
+//        new ThreadNotifyOrAll();
     }
     
     /**
