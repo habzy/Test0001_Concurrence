@@ -46,6 +46,7 @@ public class TestMain
         
         new Thread4BlockingQueue().start();
         new Thread4BlockingQueue().start();
+//        new ThreadNotifyOrAll();
     }
     
     /**
