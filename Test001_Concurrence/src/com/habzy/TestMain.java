@@ -45,7 +45,7 @@ public class TestMain
     }
     
     /**
-     * 
+     * Start the timer for exit this application.
      */
     private static void startTimer(final long longTime)
     {
