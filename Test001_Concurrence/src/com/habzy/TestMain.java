@@ -8,7 +8,7 @@ import com.habzy.log.Log;
 
 /**
  * 
- * One sentence description Detailed description
+ * This project is for testing the concurrence.
  * 
  * @author habzy
  * @version [version, 2011-9-8]
