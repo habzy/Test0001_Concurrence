@@ -5,11 +5,12 @@ import java.util.TimerTask;
 
 //import com.habzy.concurrence1.Thread4Lock;
 import com.habzy.concurrence2.Thread4BlockingQueue;
+import com.habzy.concurrence1.Thread4Lock;
 import com.habzy.log.Log;
 
 /**
  * 
- * One sentence description Detailed description
+ * This project is for testing the concurrence.
  * 
  * @author habzy
  * @version [version, 2011-9-8]
@@ -29,8 +30,8 @@ public class TestMain
     
     private static void concurrence1()
     {
-//                new Thread4Lock().start();
-//                new Thread4Lock().start();
+                new Thread4Lock().start();
+                new Thread4Lock().start();
         
         //        new ThreadVolatile(false).start();
         //        new ThreadVolatile(true).start();
@@ -43,14 +44,12 @@ public class TestMain
     private static void concurrence2()
     {
 //        new ThreadNotifyOrAll();
-        
         new Thread4BlockingQueue().start();
         new Thread4BlockingQueue().start();
-//        new ThreadNotifyOrAll();
     }
     
     /**
-     * 
+     * Start the timer for exit this application.
      */
     private static void startTimer(final long longTime)
     {
